@@ -1,4 +1,4 @@
-def testartautologia(v=[]):
+def testarsilogismo(v=[]):
 	cont = 1
 	for i in range(len(v)-1):
 		cont = 0
@@ -14,22 +14,40 @@ def testartautologia(v=[]):
 							return False
 	return True
 
-def validarargumento(v=[],s=[]):
-	ini = 0
-	for i in range (ini,len(s)-4):
+def validarargumento(s=[],v=[]):
+	r = []
+	i=0
+	for i in range (0,len(s)-4):
 		if (s[i]=="-"):
 			if(s[i+1]==1 and s[i+2]==4):
-				relacoes.extend(["-",2,3,4])
+				print("epa")
+				r.extend(["-",1,2,3,4])
 			if(s[i+1]==1 and s[i+2]==5):
-				relacoes.extend(["-",1,2])
+				r.extend(["-",0,1,3])
 			if(s[i+1]==2 and s[i+2]==4):
-				relacoes.extend(["-",1])
+				r.extend(["-",0])
 			if(s[i+1]==2 and s[i+2]==5):
-				relacoes.extend(["-",3,4])
+				r.extend(["-",2,4])
 			if(s[i+1]==3 and s[i+2]==4):
-				relacoes.extend(["-",3,4])
+				r.extend(["-",2,4])
 			if(s[i+1]==3 and s[i+2]==5):
-				relacoes.extend(["-",1])
+				r.extend(["-",0])
+			
+	i = 0
+	
+	for j in range (0,(len(r)-1)):
+		if (r[j]==0):
+			print(" não pertence ")
+		if (r[j]==1):
+			print (" interceção ")
+		if (r[j]==2):
+			print(" pertence ")
+		if (r[j]==3):
+			print(" é pertencido ")
+		if (r[j]==4):
+			print(" igualdade ")
+	
+	
 	
 				
 			
@@ -38,9 +56,9 @@ def validarargumento(v=[],s=[]):
         
         
 menu = True
-tautologia = []
+silogismo = []
 simbolos = []
-relacoes = []
+r = []
 prop=0
 aux=0
 cont=0
@@ -52,34 +70,39 @@ while menu:
 	opcao=int(input())
 	
 	if opcao == 1:
-		tautologia.append("-")
+		silogismo.append("-")
 		simbolos.append("-")
 		print ("1 - Algum, 2 - Nenhum, 3 - Todo")
 		simbolos.append(int(input()))
 		simbolos.append("-")
 		print ("(insira uma variável)")
-		tautologia.append((input()))
+		silogismo.append((input()))
 		print ("4 - é, 5 - não é")
 		simbolos.append(int(input()))
 		print ("(insira uma variável)")
-		tautologia.append((input()))
+		silogismo.append((input()))
 	if opcao == 2:
-		tautologia.append("-")
+		silogismo.append("-")
 		simbolos.append("-")
 		print ("1 - Algum, 2 - Nenhum, 3 - Todo")
 		simbolos.append(int(input()))
 		simbolos.append("-")
 		print ("insira uma variável")
-		tautologia.append((input()))
+		silogismo.append((input()))
 		print ("4 - é, 5 - não é")
 		simbolos.append(int(input()))
 		print ("(insira uma variável)")
-		tautologia.append((input()))
-		z=testartautologia(tautologia)
+		silogismo.append((input()))
+		z=testarsilogismo(silogismo)
 		if (z == False):
-			print ("Essa não é tautologia")
+			print ("Esse não é um silogismo")
 		if (z==True):
-			print ("Essa é uma tautologia")
+			print ("Esse é um silogismo")
+			validarargumento(simbolos, silogismo)
+			
+		menu = False
+		
+		
 		
 		
 			
